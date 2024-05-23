@@ -1,7 +1,7 @@
 {
   "name": "@sumor/llm-connector",
   "description": "This is a llm connector for multiple cloud providers.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "sumor-cloud/llm-connector",
   "author": "Sumor Cloud Ltd",
