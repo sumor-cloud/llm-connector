@@ -24,61 +24,69 @@ describe('main', () => {
   //     expect(modelConfig.openAI).toBeDefined()
   // })
   if (modelConfig.qianwen) {
-    it('qianWen chat', async () => {
-      const model = new Model({
-        type: 'qianWen',
-        key: modelConfig.qianwen
-      })
-      expect(model).toBeDefined()
+    it(
+      'qianWen chat',
+      async () => {
+        const model = new Model({
+          type: 'qianWen',
+          key: modelConfig.qianwen
+        })
+        expect(model).toBeDefined()
 
-      const messages = [
-        {
-          role: 'system',
-          content: 'You are a helpful assistant.'
-        },
-        {
-          role: 'user',
-          content: 'Hello'
+        const messages = [
+          {
+            role: 'system',
+            content: 'You are a helpful assistant.'
+          },
+          {
+            role: 'user',
+            content: 'Hello'
+          }
+        ]
+        const response = await model.chat('qwen-turbo', messages)
+        expect(response).toBeDefined()
+        expect(response.role).toEqual('assistant')
+        console.log('response', response)
+
+        let error
+        try {
+          await model.chat('qwen-turbo', [])
+        } catch (e) {
+          error = e
         }
-      ]
-      const response = await model.chat('qwen-turbo', messages)
-      expect(response).toBeDefined()
-      expect(response.role).toEqual('assistant')
-      console.log('response', response)
-
-      let error
-      try {
-        await model.chat('qwen-turbo', [])
-      } catch (e) {
-        error = e
-      }
-      expect(error).toBeDefined()
-      expect(error.code).toEqual('InvalidParameter')
-    })
+        expect(error).toBeDefined()
+        expect(error.code).toEqual('InvalidParameter')
+      },
+      20 * 1000
+    )
   }
   if (modelConfig.openai) {
-    it('openAI chat', async () => {
-      const model = new Model({
-        type: 'openAI',
-        key: modelConfig.openai
-      })
-      expect(model).toBeDefined()
+    it(
+      'openAI chat',
+      async () => {
+        const model = new Model({
+          type: 'openAI',
+          key: modelConfig.openai
+        })
+        expect(model).toBeDefined()
 
-      const messages = [
-        {
-          role: 'system',
-          content: 'You are a helpful assistant.'
-        },
-        {
-          role: 'user',
-          content: 'Hello'
-        }
-      ]
-      const response = await model.chat('gpt-3.5-turbo', messages)
-      expect(response).toBeDefined()
-      expect(response.role).toEqual('assistant')
-      console.log('response', response)
-    })
+        const messages = [
+          {
+            role: 'system',
+            content: 'You are a helpful assistant.'
+          },
+          {
+            role: 'user',
+            content: 'Hello'
+          }
+        ]
+        const response = await model.chat('gpt-3.5-turbo', messages)
+        expect(response).toBeDefined()
+        expect(response.role).toEqual('assistant')
+        console.log('response', response)
+      },
+      20 * 1000
+    )
   }
   it('not supported model type', async () => {
     const model = new Model({
@@ -104,5 +112,6 @@ describe('main', () => {
       error = e
     }
     expect(error).toBeDefined()
+    console.log(error.message)
   })
 })

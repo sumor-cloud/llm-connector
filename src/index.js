@@ -9,13 +9,16 @@ export default class Model {
   }
 
   async chat(model, messages) {
+    const possibleTypes = ['qianWen', 'openAI']
     switch (this.type) {
       case 'qianWen':
         return await qianWen.chat(this.key, this.endpoint.chat, model, messages)
       case 'openAI':
         return await openAI.chat(this.key, this.endpoint.chat, model, messages)
       default:
-        throw new Error('Unsupported model type')
+        throw new Error(
+          `Invalid model type: ${this.type}. Possible types: ${possibleTypes.join(', ')}`
+        )
     }
   }
 }

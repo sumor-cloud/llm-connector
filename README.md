@@ -10,6 +10,20 @@ This is a llm connector for multiple cloud providers.
 [![Coverage](https://github.com/sumor-cloud/llm-connector/actions/workflows/coverage.yml/badge.svg)](https://github.com/sumor-cloud/llm-connector/actions/workflows/coverage.yml)
 [![Audit](https://github.com/sumor-cloud/llm-connector/actions/workflows/audit.yml/badge.svg)](https://github.com/sumor-cloud/llm-connector/actions/workflows/audit.yml)
 
+## Supported Cloud Providers
+
+### OpenAI
+
+- gpt-3.5-turbo
+- gpt-4o
+
+### Alibaba Qianwen
+
+- qwen-turbo
+- qwen-plus
+- qwen-max
+- qwen-max-longcontext
+
 ## Installation
 
 ```bash
@@ -41,7 +55,7 @@ please change the following code in your `package.json` file:
 import Model from '@sumor/llm-connector'
 
 const model = new Model({
-  type: 'openai',
+  type: 'openai', // or 'qianwen'
   key: '123'
 })
 
