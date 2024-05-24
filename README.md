@@ -1,7 +1,7 @@
 # llm-connector
 
 A [Sumor Cloud](https://sumor.cloud) Tool.  
-[More Documentation](https://sumor.cloud)
+[More Documentation](https://sumor.cloud/llm-connector)
 
 This is a llm connector for multiple cloud providers.
 
