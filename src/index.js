@@ -1,24 +1,15 @@
-import qianWen from './qianWen/index.js'
-import openAI from './openAI/index.js'
-import endpoint from './endpoint.js'
+import formatConfig from './config/index.js'
+import call from './call/index.js'
+import chatFormatter from './formatter/chat.js'
+
 export default class Model {
   constructor(config) {
-    this.type = config.type
-    this.key = config.key
-    this.endpoint = Object.assign({}, endpoint[this.type] || {}, config.endpoint)
+    this.config = formatConfig(config)
   }
 
   async chat(model, messages) {
-    const possibleTypes = ['qianWen', 'openAI']
-    switch (this.type) {
-      case 'qianWen':
-        return await qianWen.chat(this.key, this.endpoint.chat, model, messages)
-      case 'openAI':
-        return await openAI.chat(this.key, this.endpoint.chat, model, messages)
-      default:
-        throw new Error(
-          `Invalid model type: ${this.type}. Possible types: ${possibleTypes.join(', ')}`
-        )
-    }
+    const formatter = chatFormatter(this.config.type)
+    const response = await call(this.config.key, this.config.chat, formatter.input(model, messages))
+    return formatter.output(response)
   }
 }

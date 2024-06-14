@@ -10,14 +10,18 @@ This is a llm connector for multiple cloud providers.
 [![Coverage](https://github.com/sumor-cloud/llm-connector/actions/workflows/coverage.yml/badge.svg)](https://github.com/sumor-cloud/llm-connector/actions/workflows/coverage.yml)
 [![Audit](https://github.com/sumor-cloud/llm-connector/actions/workflows/audit.yml/badge.svg)](https://github.com/sumor-cloud/llm-connector/actions/workflows/audit.yml)
 
-## Supported Cloud Providers
+## Supported LLM Providers
 
-### OpenAI
+### openAI
+
+OpenAI is a research lab consisting of the for-profit OpenAI LP and the non-profit OpenAI Inc. The company aims to ensure that artificial general intelligence benefits all of humanity.
 
 - gpt-3.5-turbo
 - gpt-4o
 
-### Alibaba Qianwen
+### qianWen
+
+Alibaba Qianwen is a cloud-based AI service that provides a variety of AI capabilities, including natural language processing, computer vision, and machine learning.
 
 - qwen-turbo
 - qwen-plus
@@ -34,7 +38,7 @@ npm i @sumor/llm-connector --save
 
 ### Node.JS version
 
-Require Node.JS version 16.x or above
+Require Node.JS version 18.x or above
 
 ### require Node.JS ES module
 
@@ -55,7 +59,7 @@ please change the following code in your `package.json` file:
 import Model from '@sumor/llm-connector'
 
 const model = new Model({
-  type: 'openai', // or 'qianwen'
+  type: 'openAI', // or 'qianWen'
   key: '123'
 })
 
@@ -80,10 +84,9 @@ console.log(response)
 import Model from '@sumor/llm-connector'
 
 const model = new Model({
-  type: 'openai',
+  type: 'openAI',
   key: '123',
-  endpoint: {
-    chat: 'https://api.openai.com/v1/chat'
-  }
+  endpoint: 'https://api.openai.com',
+  chat: '/v1/chat'
 })
 ```
