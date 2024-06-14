@@ -64,7 +64,7 @@ describe('main', () => {
     const messages = [
       {
         role: 'user',
-        content: 'Say {OK}'
+        content: 'Please say only two characters {OK}'
       }
     ]
 
