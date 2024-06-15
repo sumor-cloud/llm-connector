@@ -1,6 +1,6 @@
-export default type => {
+export default provider => {
   let result = {}
-  switch (type) {
+  switch (provider) {
     case 'qianWen':
       result = {
         input(model, messages) {

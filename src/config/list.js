@@ -1,7 +1,8 @@
 export default {
   openAI: {
     endPoint: 'https://api.openai.com',
-    chat: '/v1/chat/completions'
+    chat: '/v1/chat/completions',
+    image: '/v1/images/generations'
   },
   qianWen: {
     endPoint: 'https://dashscope.aliyuncs.com',

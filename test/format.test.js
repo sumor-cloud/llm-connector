@@ -2,6 +2,7 @@ import { describe, expect, it } from '@jest/globals'
 
 import formatConfig from '../src/config/index.js'
 import chatFormatter from '../src/formatter/chat.js'
+import imageFormatter from '../src/formatter/image.js'
 
 describe('main', () => {
   it('formatConfig', () => {
@@ -71,5 +72,25 @@ describe('main', () => {
       }
     })
     expect(qianWenOutput).toEqual('hi')
+  })
+  it('format image', () => {
+    const openAI = imageFormatter('openAI')
+
+    const openAIInput = openAI.input('dall-e-2', 'hello')
+    expect(openAIInput).toEqual({
+      model: 'dall-e-2',
+      prompt: 'hello',
+      n: 1,
+      size: '1024x1024'
+    })
+
+    const openAIOutput = openAI.output({
+      data: [
+        {
+          url: 'https://example.com'
+        }
+      ]
+    })
+    expect(openAIOutput).toEqual('https://example.com')
   })
 })

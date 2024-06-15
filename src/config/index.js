@@ -13,10 +13,12 @@ export default config => {
   const currentDefaultList = defaultList[type]
   const endpoint = config.endPoint || currentDefaultList.endPoint
   const chat = config.chat || currentDefaultList.chat
+  const image = config.image || currentDefaultList.image
 
   return {
     type,
     key,
-    chat: `${endpoint}${chat}`
+    chat: `${endpoint}${chat}`,
+    image: `${endpoint}${image}`
   }
 }

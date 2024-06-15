@@ -56,22 +56,45 @@ describe('main', () => {
     expect(error4).toBeDefined()
     expect(error4.message).toEqual('error')
   })
-  it('call', async () => {
-    const model = new Model(modelConfig)
-    expect(model).toBeDefined()
-    expect(model.chat).toBeDefined()
+  it(
+    'call',
+    async () => {
+      const model = new Model(modelConfig)
+      expect(model).toBeDefined()
+      expect(model.chat).toBeDefined()
 
-    const messages = [
-      {
-        role: 'user',
-        content: 'Please say only two characters {OK}'
+      const messages = [
+        {
+          role: 'user',
+          content: 'Please say only two characters {OK}'
+        }
+      ]
+
+      const response = await model.chat(modelConfig.chatModel, messages)
+      expect(response).toBeDefined()
+      expect(response.role).toEqual('assistant')
+      expect(response.content).toContain('OK')
+      console.log('chat response', response)
+    },
+    20 * 1000
+  )
+  it(
+    'image',
+    async () => {
+      const model = new Model(modelConfig)
+      expect(model).toBeDefined()
+      expect(model.image).toBeDefined()
+      if (modelConfig.imageModel) {
+        const prompt = 'an chinese dragon in the sky, with a rainbow in the background'
+        const size = '256x256'
+        const response = await model.image(modelConfig.imageModel, prompt, size)
+        expect(response).toBeDefined()
+        expect(response).toContain('http')
+        console.log('image response', response)
+      } else {
+        expect(1).toEqual(1)
       }
-    ]
-
-    const response = await model.chat(modelConfig.chatModel, messages)
-    expect(response).toBeDefined()
-    expect(response.role).toEqual('assistant')
-    expect(response.content).toEqual('OK')
-    console.log('response', response)
-  })
+    },
+    20 * 1000
+  )
 })
