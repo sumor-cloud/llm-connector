@@ -78,6 +78,21 @@ console.log(response)
 // Output: { role: 'assistant', content: 'Hello, how can I help you today?' }
 ```
 
+### Image
+
+```javascript
+import Model from '@sumor/llm-connector'
+
+const model = new Model({
+  type: 'openAI', // or 'qianWen'
+  key: '123'
+})
+
+const response = await model.image('dall-e-3', 'a painting of a flower vase', '1024x1024');
+console.log(response)
+// Output: https://oaidalleapiprodscus.blob.core.windows.net/private/org-B7O45Q0iSubrkWb...
+```
+
 ### Custom API Endpoint URL
 
 ```javascript
@@ -87,6 +102,7 @@ const model = new Model({
   type: 'openAI',
   key: '123',
   endpoint: 'https://api.openai.com',
-  chat: '/v1/chat'
+  chat: '/v1/chat',
+  image: '/v1/image'
 })
 ```
