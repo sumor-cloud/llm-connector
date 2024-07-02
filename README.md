@@ -88,7 +88,7 @@ const model = new Model({
   key: '123'
 })
 
-const response = await model.image('dall-e-3', 'a painting of a flower vase', '1024x1024');
+const response = await model.image('dall-e-3', 'a painting of a flower vase', '1024x1024')
 console.log(response)
 // Output: https://oaidalleapiprodscus.blob.core.windows.net/private/org-B7O45Q0iSubrkWb...
 ```

@@ -11,7 +11,10 @@
   "exports": "./src/index.js",
   "keywords": [
     "llm",
-    "gpt"
+    "gpt",
+    "openai",
+    "tongyi",
+    "qianwen"
   ],
   "dependencies": {
     "@sumor/error": "^1.0.6",
